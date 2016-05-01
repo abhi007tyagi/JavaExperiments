@@ -27,7 +27,7 @@ public class Sorting {
 		System.out.println("Input Array");
 		printArray(arr);
 		System.out.println("\nSorted Array");
-		printArray(reverseInsertionSort(arr));
+		printArray(selectionSort(arr));
 	}
 	
 	public static int[] insertionSort(int[] arr){
@@ -56,6 +56,23 @@ public class Sorting {
 				i++;
 			}
 			arr[i-1] = key;
+		}
+		return arr;
+	}
+	
+	public static int[] selectionSort(int[] arr){
+		// Do selection sort
+		int arraySize = arr.length;
+		for(int j=0; j<arraySize; j++){
+			int small = arr[j];
+			for(int i=j+1; i<arraySize; i++){
+				if(arr[i]<small){
+					int temp = small;
+					small = arr[i];
+					arr[i] = temp;
+				}
+			}
+			arr[j] = small;
 		}
 		return arr;
 	}
