@@ -27,7 +27,7 @@ public class Sorting {
 		System.out.println("Input Array");
 		printArray(arr);
 		System.out.println("\nSorted Array");
-		printArray(selectionSort(arr));
+		mergeSort(arr,0,size);
 	}
 	
 	public static int[] insertionSort(int[] arr){
@@ -77,11 +77,47 @@ public class Sorting {
 		return arr;
 	}
 	
+	public static void mergeSort(int[] arr, int p, int r){
+		if(p<r){
+			int q=(p+r)/2;
+			mergeSort(arr, p, q);
+			mergeSort(arr, q+1, r);
+			printArray(merge(arr, p, q, r));
+		}
+	}
+	
+	public static int[] merge(int[] arr, int p, int q, int r){
+		int n1 = q-p;
+		int n2 = r-q;
+		int[] L = new int[n1];
+		int[] R = new int[n2];
+		for(int i=0; i<n1; i++){
+			L[i] = arr[p+i];
+		}
+		for(int i=0;i<n2;i++){
+			R[i] = arr[q+i];
+		}
+		
+		int i=0;
+		int j=0;
+		for(int k=p; k<r; k++){
+			if(i<n1 && L[i]<=R[j]){
+				arr[k] = L[i];
+				i++;
+			}else if(j<n2){
+				arr[k] = R[j];
+				j++;
+			}
+		}
+		return arr;
+	}
+	
 	public static void printArray(int[] arr){
 		int arrayLength = arr.length;
 		for(int i=0; i<arrayLength; i++){
 			System.out.print(arr[i]+" ");
 		}
+		System.out.println("------");
 	}
 
 }

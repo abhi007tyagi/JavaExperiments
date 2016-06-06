@@ -3,6 +3,8 @@
  */
 package tyagiabhinav.corsera.algo1.assignment1;
 
+import java.util.Scanner;
+
 import edu.princeton.cs.algs4.Out;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
@@ -15,24 +17,22 @@ import edu.princeton.cs.algs4.StdStats;
 public class PercolationStats {
 
 	private double[] thresholds;
-	private Percolation p;
+	private Percolation percolation;
 
-	/**
-	 * Constructor for PercolationStats
-	 */
 	public PercolationStats(int N, int T) {
-		if (N <= 0 || T <= 0)
+		if (N <= 0 || T <= 0){
 			throw new IllegalArgumentException();
+		}
 		thresholds = new double[T];
 
 		for (int i = 0; i < T; i++) {
-			p = new Percolation(N);
+			percolation = new Percolation(N);
 			int count = 0;
-			while (!p.percolates()) {
+			while (!percolation.percolates()) {
 				int x = StdRandom.uniform(N) + 1;
 				int y = StdRandom.uniform(N) + 1;
-				if (!p.isOpen(x, y)) {
-					p.open(x, y);
+				if (!percolation.isOpen(x, y)) {
+					percolation.open(x, y);
 					count++;
 				}
 			}
@@ -40,34 +40,30 @@ public class PercolationStats {
 		}
 	}
 
-	/**
-	 * Returns the sample mean
-	 */
+	public double stdDev() {
+		return StdStats.stddev(thresholds);
+	}
+	
 	public double mean() {
 		return StdStats.mean(thresholds);
 	}
 
-	/**
-	 * Returns the sample standard deviation
-	 */
-	public double stddev() {
-		return StdStats.stddev(thresholds);
-	}
-
 	public static void main(String[] args) {
 		Out out = new Out();
-		int N = Integer.parseInt(args[0]);
-		int T = Integer.parseInt(args[1]);
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int T = sc.nextInt();
+		sc.close();
 
-		PercolationStats ps = new PercolationStats(N, T);
+		PercolationStats pStat = new PercolationStats(N, T);
 
-		double mean = ps.mean();
-		double stddev = ps.stddev();
+		double mean = pStat.mean();
+		double stddev = pStat.stdDev();
 		double lowConf = mean - (1.96 * stddev / Math.sqrt(T));
 		double highConf = mean + (1.96 * stddev / Math.sqrt(T));
 
-		out.printf("mean                    = %f\n", mean);
-		out.printf("stddev                  = %f\n", stddev);
+		out.printf("mean \t = %f\n", mean);
+		out.printf("stddev \t = %f\n", stddev);
 		out.printf("95%% confidence interval = %f, %f\n", lowConf, highConf);
 		out.close();
 	}
