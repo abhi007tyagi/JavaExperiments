@@ -27,7 +27,7 @@ public class Sorting {
 		System.out.println("Input Array");
 		printArray(arr);
 		System.out.println("\nSorted Array");
-		printArray(mergeSort(arr));
+		printArray(quickSort(arr, 0, arr.length-1));
 	}
 
 	public static int[] insertionSort(int[] arr) {
@@ -138,6 +138,54 @@ public class Sorting {
 		return merged;
 	}
 
+	public static int quickPartition(int[] arr, int l, int r){
+		// extract pivot
+		int pivot = arr[r];
+		// save last index of array
+		int p = r;
+		// decrement last index for comparison
+		r--;
+		
+		while(true){
+			// increment first index while value of arr[l] < pivot
+			while(arr[l]<pivot && l <= p){
+				l++;
+			}
+			// decrement last index while value of arr[l] > pivot
+			while(arr[r]>pivot && r > 0){
+				r--;
+			}
+			// pivot point found
+			if(l>=r){
+				break;
+			}else{
+				// swap values and continue
+				int temp = arr[l];
+				arr[l] = arr[r];
+				arr[r] = temp;
+//				printArray(arr);
+			}
+		}
+		// swap pivot value with pivot point value
+		int temp = arr[l];
+		arr[l] = arr[p];
+		arr[p] = temp;
+//		System.out.print("ITT---> ");printArray(arr);
+		
+		//return pivot point value
+		return l;
+	}
+	
+	public static int[] quickSort(int[] arr, int low, int high){
+		if(low<high){
+			int p = quickPartition(arr, low, high);
+			quickSort(arr,low,p-1);
+			quickSort(arr,p+1, high);
+		}
+//		printArray(arr);
+		return arr;
+	}
+	
 	public static void printArray(int[] arr) {
 		int arrayLength = arr.length;
 		for (int i = 0; i < arrayLength; i++) {
