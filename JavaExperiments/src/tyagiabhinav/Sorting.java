@@ -27,7 +27,7 @@ public class Sorting {
 		System.out.println("Input Array");
 		printArray(arr);
 		System.out.println("\nSorted Array");
-		printArray(quickSort(arr, 0, arr.length-1));
+		printArray(threeWayQuickSort(arr, 0, arr.length - 1));
 	}
 
 	public static int[] insertionSort(int[] arr) {
@@ -77,34 +77,33 @@ public class Sorting {
 		return arr;
 	}
 
-	
-	public static int[] mergeSort(int[] arr){
+	public static int[] mergeSort(int[] arr) {
 		int arrSize = arr.length;
-		if(arrSize == 1){
+		if (arrSize == 1) {
 			return arr;
 		}
-		
-		int mid = arrSize/2;
+
+		int mid = arrSize / 2;
 		int[] left = new int[mid];
-		int[] right = new int[arrSize-mid];
-//		System.out.println("Left Size->"+left.length);
-//		System.out.println("Right Size->"+right.length);
-		
-		for(int i=0; i<mid; i++){
+		int[] right = new int[arrSize - mid];
+		// System.out.println("Left Size->"+left.length);
+		// System.out.println("Right Size->"+right.length);
+
+		for (int i = 0; i < mid; i++) {
 			left[i] = arr[i];
 		}
-//		System.out.print("Left Array: ");printArray(left);
-		
-		for(int i=0; i<(arrSize-mid); i++){
-			right[i] = arr[i+mid];
+		// System.out.print("Left Array: ");printArray(left);
+
+		for (int i = 0; i < (arrSize - mid); i++) {
+			right[i] = arr[i + mid];
 		}
-//		System.out.print("Right Array: ");printArray(right);
-		
+		// System.out.print("Right Array: ");printArray(right);
+
 		left = mergeSort(left);
 		right = mergeSort(right);
-		
+
 		return mergeArrays(left, right);
-		
+
 	}
 
 	public static int[] mergeArrays(int[] left, int[] right) {
@@ -134,58 +133,95 @@ public class Sorting {
 			merged[m++] = right[r++];
 		}
 
-//		printArray(merged);
+		// printArray(merged);
 		return merged;
 	}
 
-	public static int quickPartition(int[] arr, int l, int r){
+	/**
+	 * 
+	 * @param arr
+	 *            with distinct values only
+	 * @param l
+	 * @param r
+	 * @return
+	 */
+	public static int quickPartition(int[] arr, int l, int r) {
 		// extract pivot
 		int pivot = arr[r];
 		// save last index of array
 		int p = r;
 		// decrement last index for comparison
 		r--;
-		
-		while(true){
+
+		while (true) {
+			System.out.println("running...");
 			// increment first index while value of arr[l] < pivot
-			while(arr[l]<pivot && l <= p){
+			while (arr[l] < pivot && l <= p) {
 				l++;
 			}
 			// decrement last index while value of arr[l] > pivot
-			while(arr[r]>pivot && r > 0){
+			while (arr[r] > pivot && r > 0) {
 				r--;
 			}
 			// pivot point found
-			if(l>=r){
+			if (l >= r) {
 				break;
-			}else{
+			} else {
 				// swap values and continue
 				int temp = arr[l];
 				arr[l] = arr[r];
 				arr[r] = temp;
-//				printArray(arr);
+				// printArray(arr);
 			}
 		}
 		// swap pivot value with pivot point value
 		int temp = arr[l];
 		arr[l] = arr[p];
 		arr[p] = temp;
-//		System.out.print("ITT---> ");printArray(arr);
-		
-		//return pivot point value
+		// System.out.print("ITT---> ");printArray(arr);
+
+		// return pivot point value
 		return l;
 	}
-	
-	public static int[] quickSort(int[] arr, int low, int high){
-		if(low<high){
+
+	public static int[] quickSort(int[] arr, int low, int high) {
+		if (low < high) {
 			int p = quickPartition(arr, low, high);
-			quickSort(arr,low,p-1);
-			quickSort(arr,p+1, high);
+			quickSort(arr, low, p - 1);
+			quickSort(arr, p + 1, high);
 		}
-//		printArray(arr);
+		// printArray(arr);
 		return arr;
 	}
-	
+
+	public static int[] threeWayQuickSort(int[] arr, int lo, int hi) {
+		if (hi <= lo) {
+			return arr;
+		}
+		int l = lo, r = hi, i = lo;
+		int pivot = arr[lo];
+		while (i <= r) {
+//			System.out.println("lo=" + lo + " hi=" + hi + " piv=" + pivot + " i=" + i + " l=" + l + " r=" + r);
+			if (arr[i] < pivot) {
+				int temp = arr[i];
+				arr[i++] = arr[l];
+				arr[l++] = temp;
+			} else if (arr[i] > pivot) {
+				int temp = arr[i];
+				arr[i] = arr[r];
+				arr[r--] = temp;
+			} else {
+				i++;
+			}
+//			System.out.print("-->");
+//			printArray(arr);
+		}
+		threeWayQuickSort(arr, lo, l - 1);
+		threeWayQuickSort(arr, r + 1, hi);
+
+		return arr;
+	}
+
 	public static void printArray(int[] arr) {
 		int arrayLength = arr.length;
 		for (int i = 0; i < arrayLength; i++) {
