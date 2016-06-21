@@ -178,7 +178,7 @@ public class Sorting {
 		int temp = arr[l];
 		arr[l] = arr[p];
 		arr[p] = temp;
-		// System.out.print("ITT---> ");printArray(arr);
+		 System.out.print("ITT---> ");printArray(arr);
 
 		// return pivot point value
 		return l;
@@ -216,6 +216,7 @@ public class Sorting {
 //			System.out.print("-->");
 //			printArray(arr);
 		}
+//		printArray(arr);
 		threeWayQuickSort(arr, lo, l - 1);
 		threeWayQuickSort(arr, r + 1, hi);
 
