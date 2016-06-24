@@ -7,11 +7,11 @@ package tyagiabhinav.lsrc;
  * @author abhinavtyagi
  *
  */
-public class QueueUsingStack {
+public class QueueUsingTwoStack {
 
 	private static Stack S1, S2;
 
-	QueueUsingStack(int s) {
+	QueueUsingTwoStack(int s) {
 		S1 = new Stack(s);
 		S2 = new Stack(s);
 	}
@@ -46,7 +46,7 @@ public class QueueUsingStack {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		QueueUsingStack qus = new QueueUsingStack(10);
+		QueueUsingTwoStack qus = new QueueUsingTwoStack(10);
 		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
 		qus.enqueue(1);
 		qus.enqueue(2);
