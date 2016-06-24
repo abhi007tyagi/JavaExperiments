@@ -79,6 +79,8 @@ public class QueueUsingStack {
 		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
 		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
 		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
 
 	}
 
