@@ -26,6 +26,10 @@ public class Stack {
 		return (top==size);
 	}
 	
+	public int getStackFilledSize(){
+		return (top);
+	}
+	
 	public void push(int n){
 		if(top<size ){
 			arr[top++]=n;
