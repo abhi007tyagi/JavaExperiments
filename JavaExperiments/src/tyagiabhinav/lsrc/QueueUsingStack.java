@@ -12,8 +12,8 @@ public class QueueUsingStack {
 	private static Stack S1, S2;
 
 	QueueUsingStack(int s) {
-		S1 = new Stack(s / 2);
-		S2 = new Stack(s / 2);
+		S1 = new Stack(s);
+		S2 = new Stack(s);
 	}
 
 	public static void enqueue(int n) {
@@ -33,7 +33,11 @@ public class QueueUsingStack {
 					S2.push(S1.pop());
 				}
 			}
-			return S2.pop();
+			int p = S2.pop();
+			while(!S2.isEmpty()){
+				S1.push(S2.pop());
+			}
+			return p;
 		}
 		return -1;
 	}
@@ -66,6 +70,15 @@ public class QueueUsingStack {
 		qus.enqueue(17);
 		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
 		qus.enqueue(18);
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
+		System.out.print("DQ---->>>>>>>" + qus.dequeue() + "\n");
 
 	}
 
