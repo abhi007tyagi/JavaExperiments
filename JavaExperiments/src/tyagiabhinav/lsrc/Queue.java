@@ -9,22 +9,30 @@ package tyagiabhinav.lsrc;
  */
 public class Queue {
 
-	private static int tail = 0;
-	private static int head = 0;
-	private static int[] arr;
-	private static int size;
-	private static int filledSize = 0;
+	private int tail = 0;
+	private int head = 0;
+	private int[] arr;
+	private int size;
+	private int filledSize = 0;
 
 	Queue(int s) {
 		this.size = s;
 		arr = new int[this.size];
 	}
 
-	public static boolean isEmpty() {
-		return tail == 0 && head == 0;
+	public boolean isEmpty() {
+		return filledSize == 0;
+	}
+	
+	public boolean isFull() {
+		return filledSize==size;
 	}
 
-	public static void enqueue(int n) {
+	public int getFilledSize() {
+		return filledSize;
+	}
+	
+	public void enqueue(int n) {
 		if (filledSize < size) {
 			arr[tail] = n;
 			filledSize++;
@@ -36,10 +44,10 @@ public class Queue {
 		} else {
 			System.out.println("Queue full !!");
 		}
-		printArray(arr);
+//		printArray(arr);
 	}
 
-	public static int dequeue() {
+	public int dequeue() {
 		if (filledSize==0) {
 			System.out.println("Queue empty !!");
 			return -1;
@@ -55,7 +63,7 @@ public class Queue {
 		return p;
 	}
 
-	public static void printArray(int[] arr) {
+	public void printArray(int[] arr) {
 		int arrayLength = arr.length;
 		for (int i = 0; i < arrayLength; i++) {
 			System.out.print(arr[i] + " ");
