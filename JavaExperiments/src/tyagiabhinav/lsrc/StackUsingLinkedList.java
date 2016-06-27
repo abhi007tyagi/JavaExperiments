@@ -3,7 +3,7 @@
  */
 package tyagiabhinav.lsrc;
 
-import tyagiabhinav.util.SinglyLinkedList;
+import tyagiabhinav.util.NodeS;
 
 /**
  * @author abhinavtyagi
@@ -11,23 +11,36 @@ import tyagiabhinav.util.SinglyLinkedList;
  */
 public class StackUsingLinkedList {
 
-	private static SinglyLinkedList sll = new SinglyLinkedList();
+	private static NodeS top = null;
 
 	public static void push(int n) {
-		sll.insert(n);
+		NodeS node = new NodeS(n);
+		node.next = top;
+		top = node;
 	}
 
 	public static int pop() {
-		if (!sll.isEmpty()) {
-			return sll.delete().num;
-		}else{
+		if (!isEmpty()) {
+			NodeS del = top;
+			top = del.next;
+			return del.num;
+		} else {
 			System.out.println("Stack Empty!");
 			return -1;
 		}
 	}
-	
-	public static void printStack(){
-		sll.printList();
+
+	public static boolean isEmpty() {
+		return top == null;
+	}
+
+	public void printList() {
+		NodeS temp = top;
+		while (temp != null) {
+			System.out.print(temp.num);
+			temp = temp.next;
+		}
+		System.out.println();
 	}
 
 	/**
@@ -42,21 +55,21 @@ public class StackUsingLinkedList {
 		sull.push(5);
 		sull.push(6);
 		sull.push(7);
-		sull.printStack();
-		System.out.println("Pop->"+sull.pop());
+		sull.printList();
+		System.out.println("Pop->" + sull.pop());
 		sull.push(8);
-		sull.printStack();
-		System.out.println("Pop->"+sull.pop());
-		System.out.println("Pop->"+sull.pop());
-		System.out.println("Pop->"+sull.pop());
-		System.out.println("Pop->"+sull.pop());
-		System.out.println("Pop->"+sull.pop());
-		System.out.println("Pop->"+sull.pop());
-		System.out.println("Pop->"+sull.pop());
-		System.out.println("Pop->"+sull.pop());
+		sull.printList();
+		System.out.println("Pop->" + sull.pop());
+		System.out.println("Pop->" + sull.pop());
+		System.out.println("Pop->" + sull.pop());
+		System.out.println("Pop->" + sull.pop());
+		System.out.println("Pop->" + sull.pop());
+		System.out.println("Pop->" + sull.pop());
+		System.out.println("Pop->" + sull.pop());
+		System.out.println("Pop->" + sull.pop());
 		sull.push(9);
 		sull.push(10);
-		sull.printStack();
+		sull.printList();
 	}
 
 }
