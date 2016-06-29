@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tyagiabhinav.lsrc;
+package tyagiabhinav.clrs;
 
 import java.util.Scanner;
 

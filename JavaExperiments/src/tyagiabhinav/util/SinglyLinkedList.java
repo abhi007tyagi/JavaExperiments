@@ -3,7 +3,7 @@
  */
 package tyagiabhinav.util;
 
-import tyagiabhinav.lsrc.SinglyCircularList;
+import tyagiabhinav.clrs.SinglyCircularList;
 
 /**
  * @author abhinavtyagi

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tyagiabhinav.lsrc;
+package tyagiabhinav.clrs;
 
 /**
  * @author abhinavtyagi
