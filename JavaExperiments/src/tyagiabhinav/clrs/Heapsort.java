@@ -9,48 +9,39 @@ import java.util.Scanner;
  * @author abhinavtyagi
  *
  */
-public class MaxHeap {
-
-	public static void buildMaxHeap(int[] arr) {
+public class Heapsort {
+	
+	
+	private static void buildMaxHeap(int[] arr) {
 		for (int i = (arr.length / 2); i >= 0; i--) {
-//			maxHeapifyRecursive(arr, i);
-			sink(arr, i);
+			sink(arr, i, arr.length);
 		}
 	}
 
-	public static void maxHeapifyRecursive(int[] arr, int i) {
-		int l = 2 * i;
-		int r = 2 * i + 1;
-		int largest = -1;
-		if (l < arr.length && arr[l] > arr[i]) {
-			largest = l;
-		} else {
-			largest = i;
-		}
-		if (r < arr.length && arr[r] > arr[largest]) {
-			largest = r;
-		}
-		if (largest != i) {
-			int temp = arr[i];
-			arr[i] = arr[largest];
-			arr[largest] = temp;
-			maxHeapifyRecursive(arr, largest);
-		}
-	}
-
-	private static void sink(int arr[], int i) {
-		while (2*i <= arr.length) {
+	private static void sink(int arr[], int i, int heapSize) {
+		while (2*i <= heapSize) {
 			int l = 2 * i;
-			if (l < (arr.length-1) && arr[l] < arr[l + 1]) {
+			if (l < (heapSize-1) && arr[l] < arr[l + 1]) {
 				l++;
 			}
-			if (l == arr.length || (arr[i]>arr[l])){
+			if (l == heapSize || (arr[i]>=arr[l])){
 				break;
 			}
 			int temp = arr[i];
 			arr[i] = arr[l];
 			arr[l] = temp;
 			i = l;
+		}
+	}
+	
+	public static void heapsort(int[] arr){
+		buildMaxHeap(arr);
+		int heapSize = arr.length;
+		for(int i=(arr.length-1); i>=1; i--){
+			int temp = arr[0];
+			arr[0] = arr[i];
+			arr[i] = temp;
+			sink(arr, 0, --heapSize);
 		}
 	}
 
@@ -71,7 +62,8 @@ public class MaxHeap {
 		}
 		System.out.println();
 
-		buildMaxHeap(arr);
+		heapsort(arr);
+//		buildMaxHeap(arr);
 
 		System.out.println("--Output--");
 		for (int i = 0; i < size; i++) {
