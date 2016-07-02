@@ -24,9 +24,7 @@ public class Problem1 {
 		//if(num%15==0) => number is divisible by 15 or by both 3 & 5 (to be used if we want sum for num divisible by 3 AND 5)
 		int sum=0;
 		for(int i=0;i<1000;i++){
-			if(i%3==0){
-				sum+=i;
-			}else if(i%5==0){
+			if(i%3==0||i%5==0){
 				sum+=i;
 			}
 		}
