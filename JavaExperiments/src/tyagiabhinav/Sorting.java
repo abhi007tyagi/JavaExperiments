@@ -27,7 +27,7 @@ public class Sorting {
 		System.out.println("Input Array");
 		printArray(arr);
 		System.out.println("\nSorted Array");
-		printArray(threeWayQuickSort(arr, 0, arr.length - 1));
+		printArray(quickSort(arr, 0, arr.length - 1));
 	}
 
 	public static int[] insertionSort(int[] arr) {
@@ -139,8 +139,8 @@ public class Sorting {
 	
 	public static int quickPartitionCLRS(int[] arr, int l, int r){
 		int pivot = arr[r];
-		int i=l;
-		for(int j=l; j<r-1; j++){
+		int i=l-1;
+		for(int j=l; j<=r-1; j++){
 			if(arr[j]<= pivot){
 				i++;
 				int temp = arr[i];
@@ -200,10 +200,27 @@ public class Sorting {
 		// return pivot point value
 		return l;
 	}
+	
+	public static int quickPartitionDecreasingCLRS(int[] arr, int l, int r){
+		int pivot = arr[r];
+		int i=l-1;
+		for(int j=l; j<=r-1; j++){
+			if(arr[j]>= pivot){
+				i++;
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+		int temp = arr[i+1];
+		arr[i+1] = arr[r];
+		arr[r] = temp;
+		return i+1;
+	}
 
 	public static int[] quickSort(int[] arr, int low, int high) {
 		if (low < high) {
-			int p = quickPartitionCLRS(arr, low, high);
+			int p = quickPartitionDecreasingCLRS(arr, low, high);
 			quickSort(arr, low, p - 1);
 			quickSort(arr, p + 1, high);
 		}
