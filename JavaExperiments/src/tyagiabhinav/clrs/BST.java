@@ -96,14 +96,46 @@ public class BST {
 			return p;
 		}
 	}
+	
+	public static void transplant(Node a, Node b){
+		if(a.parent == null){
+			root = b;
+		}else if(a == a.parent.left){
+			a.parent.left = b;
+		}else{
+			a.parent.right = b;
+		}
+		if(b != null){
+			b.parent = a.parent;
+		}
+	}
+	
+	public static void delete(Node node){
+		if(node.left == null){
+			transplant(node, node.right);
+		}else if(node.right == null){
+			transplant(node, node.left);
+		}else{
+			Node temp =treeMin(node.right);
+			if(temp.parent != node){
+				transplant(temp, temp.right);
+				temp.right = node.right;
+				temp.right.parent = temp;
+			}
+			transplant(node, temp);
+			temp.left = node.left;
+			temp.left.parent = temp;
+		}
+	}
+	
 	public static void inorder(Node node){
 		if(node != null){
 			inorder(node.left);
-			System.out.print(node.val+" ");
-//			if(node.parent == null)
-//				System.out.print(node.val+"-null | ");
-//			else
-//				System.out.print(node.val+"-"+node.parent.val+" | ");
+//			System.out.print(node.val+" ");
+			if(node.parent == null)
+				System.out.print(node.val+"-null | ");
+			else
+				System.out.print(node.val+"-"+node.parent.val+" | ");
 			inorder(node.right);
 		}
 	}
@@ -153,6 +185,22 @@ public class BST {
 		System.out.println("Successor of 4 --> "+successor(search(root, 4)).val);
 		System.out.println("Predecessor of 7 --> "+predecessor(root).val);
 		System.out.println("Predecessor of 5 --> "+predecessor(search(root, 5)).val);
+		bst.delete(search(root, 3));
+		bst.inorder(root);
+		System.out.println("\n--------");
+		bst.insert(2);
+		bst.inorder(root);
+		System.out.println("\n--------");
+		bst.delete(search(root, 5));
+		System.out.println("Size: "+size);
+		bst.inorder(root);
+		System.out.println("\n--------");
+		bst.insert(3);
+		bst.inorder(root);
+		System.out.println("\n--------");
+		bst.delete(search(root, 7));
+		bst.inorder(root);
+		System.out.println("\n--------");
 	}
 
 }
