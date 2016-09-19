@@ -72,7 +72,6 @@ public class Project7 {
 				j++;
 			}
 		}
-
 		return primeNums;
 	}
 	// Scanner sc = new Scanner(System.in);
