@@ -23,11 +23,15 @@ public class Project7 {
 		Scanner sc = new Scanner(System.in);
 		int T = sc.nextInt();
 
-		int[] primeNumbers = sieveOfEratosthenes(10000000);
+		int[] primeNumbers = sieveOfEratosthenes(10000000); // Sieve of Eratosthenes 664579 prime numbers in total... N should be <= 664579
 
 		for (int k = 0; k < T; k++) {
 			int N = sc.nextInt();
-			System.out.println(primeNumbers[N]);
+			if(N <= 664579){
+				System.out.println(primeNumbers[N]);
+			}else{
+				System.out.println("N should be <= 664579 !!");
+			}
 		}
 
 	}
@@ -64,7 +68,7 @@ public class Project7 {
 		for (int i = 2; i <= n; i++) {
 			if (prime[i] == true) {
 				primeNums[j] = i;
-				System.out.println(j+"-"+primeNums[j]);
+//				System.out.println(j+"-"+primeNums[j]);
 				j++;
 			}
 		}
