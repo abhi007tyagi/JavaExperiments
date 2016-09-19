@@ -3,6 +3,8 @@
  */
 package tyagiabhinav.projecteuler;
 
+import java.util.Scanner;
+
 /**
  * @author abhinavtyagi
  *
@@ -19,22 +21,33 @@ public class Problem4 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int largest = 0;
-		for (int i = 999; i >= 100; i--) {
-			for (int j = 999; j >= i; j--) {
-				int num = i * j;
-				if (isPalindrome(num) && largest < num) {
-					largest = num;
-					// System.out.println(i+"*"+j+"="+num);
-					break;
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
+		for (int k = 0; k < T; k++) {
+			int N = sc.nextInt();
+			int largest = 0;
+			for (int i = 999; i >= 100; i--) {
+				for (int j = 999; j >= i; j--) {
+					int num = i * j;
+					if (num < N && isPalindrome(num) && largest < num) {
+						largest = num;
+//						System.out.println(i + "*" + j + "=" + num);
+						break;
+					}
 				}
 			}
+			System.out.println(largest);
 		}
-		System.out.println("Largest=" + largest);
-
 	}
 
 	public static boolean isPalindrome(int num) {
+		
+//		StringBuffer sb = new StringBuffer(String.valueOf(num));
+//		String num1 = sb.toString();
+//		String num2 = sb.reverse().toString();
+//		
+//		return num1.equals(num2);
+//		
 		int rev = num;
 		int temp = 0, t;
 		while (num > 0) {

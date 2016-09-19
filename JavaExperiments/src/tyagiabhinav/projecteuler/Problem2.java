@@ -39,7 +39,7 @@ public class Problem2 {
 				System.out.print(num+", ");
 				num = numFirst + numSecond;
 			}
-			System.out.println(sum);
+			System.out.println("\nSum-> "+sum);
 		}
 	}
 

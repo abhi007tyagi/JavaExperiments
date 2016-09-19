@@ -3,6 +3,8 @@
  */
 package tyagiabhinav.projecteuler;
 
+import java.util.Scanner;
+
 /**
  * @author abhinavtyagi
  *
@@ -18,15 +20,28 @@ public class Project3 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		long num = 600851475143L;
-		for (long i = 2; i <= Math.sqrt(num); i++) {
-			if (num % i == 0) {
-//				System.out.print(i + ", ");
-				num /= i;
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
+		for (int j = 0; j < T; j++) {
+			int largestPrime = 0;
+			int num = sc.nextInt();
+			if (num % 2 == 0) {
+				num /= 2;
+				largestPrime = 2;
 			}
-		}
-		if (num > 2) {
-			System.out.print(num);
+			for (int i = 3; i <= num; i += 2) {
+				if (num % i == 0) {
+					// System.out.println(i + ", ");
+					num /= i;
+					largestPrime = i;
+				}
+			}
+//			if (num > 2) {
+//				System.out.println(num);
+//			}else 
+			if(largestPrime > 2){
+				System.out.println(largestPrime);
+			}
 		}
 	}
 
