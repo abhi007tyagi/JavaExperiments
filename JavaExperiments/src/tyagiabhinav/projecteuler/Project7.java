@@ -23,7 +23,7 @@ public class Project7 {
 		Scanner sc = new Scanner(System.in);
 		int T = sc.nextInt();
 
-		int[] primeNumbers = sieveOfEratosthenes(10000000);
+		int[] primeNumbers = sieveOfEratosthenes(10000000); // Sieve of Eratosthenes 664579 prime numbers in total... N should be <= 664579
 
 		for (int k = 0; k < T; k++) {
 			int N = sc.nextInt();
