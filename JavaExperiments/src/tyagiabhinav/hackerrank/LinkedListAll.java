@@ -4,6 +4,7 @@
 package tyagiabhinav.hackerrank;
 
 import tyagiabhinav.util.Node;
+import java.util.Stack;
 
 /**
  * @author abhinavtyagi
@@ -21,6 +22,26 @@ public class LinkedListAll {
 		head = InsertNth(head, 2, 0);
 		// printList(head);
 		head = InsertNth(head, 16, 0);
+		head = InsertNth(head, 27, 1);
+		head = InsertNth(head, 9, 0);
+		head = InsertNth(head, 7, 2);
+		printList(head);
+		System.out.println();
+
+//		ReversePrint(head);
+		head = Reverse(head);
+		printList(head);
+		System.out.println();
+
+		head = DeleteNth(head, 1);
+		printList(head);
+		System.out.println();
+
+		head = DeleteNth(head, 0);
+		printList(head);
+		System.out.println();
+
+		head = DeleteNth(head, 3);
 		printList(head);
 		// System.out.println((head = InsertNth(head, 10, 0)).data);
 		// System.out.println((head = InsertNth(head, 2, 0)).data);
@@ -81,6 +102,62 @@ public class LinkedListAll {
 			temp = temp.next;
 			temp.next = nodeNew;
 			return head;
+		}
+	}
+
+	public static Node DeleteNth(Node head, int position) {
+
+		if (head == null) {
+			return null;
+		} else if (position == 0 && head.next == null) {
+			return null;
+		} else if (position == 0 && head.next != null) {
+			head = head.next;
+			return head;
+		} else {
+			int i = 0;
+			Node temp = head;
+			while (i < position - 1 && temp.next != null) {
+				temp = temp.next;
+				i++;
+			}
+
+			Node node = temp.next;
+			temp.next = node.next;
+			node = null;
+			return head;
+		}
+	}
+
+	public static void ReversePrint(Node head) {
+		Stack stack = new Stack<>();
+		while (head != null) {
+			stack.add(head.data + " ");
+			head = head.next;
+		}
+		while (!stack.isEmpty()) {
+			System.out.print(stack.pop());
+		}
+	}
+
+	public static Node Reverse(Node head) {
+
+		if (head == null) {
+			return null;
+		} else {
+			Node currentNode = head;
+			Node prevNode = null;
+			Node nextNode = head.next;
+			
+			while (nextNode != null){
+				Node temp = prevNode;
+				prevNode = currentNode;
+				currentNode = nextNode;
+				prevNode.next = temp;
+				nextNode = nextNode.next;
+				currentNode.next = prevNode;
+			}
+			return currentNode;
 		}
 	}
 
