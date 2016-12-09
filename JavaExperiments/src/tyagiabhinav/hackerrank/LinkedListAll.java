@@ -171,7 +171,7 @@ public class LinkedListAll {
 	    } else {
 	        while(headA != null && headB != null){
 	            if(headA.data == headB.data){
-	                if((headA.next != null && headB.next != null) || (headA.next == null && headB.next == null)){
+	            	if(!(headA.next==null ^ headB.next==null)){
 	                    headA = headA.next;
 	                    headB = headB.next;
 	                }else{
