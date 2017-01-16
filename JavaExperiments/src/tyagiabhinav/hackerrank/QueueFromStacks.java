@@ -13,6 +13,7 @@ import java.util.Stack;
 public class QueueFromStacks {
 
 	private static Stack<Integer> S1 = new Stack<Integer>();
+	private static Stack<Integer> S2 = new Stack<Integer>();
 	private static int front;
 
 	/**
@@ -30,48 +31,61 @@ public class QueueFromStacks {
 				dequeue();
 				break;
 			case 3: // print
-				print();
+//				print();
+				System.out.println(front);
 				break;
 			}
 		}
 	}
 
 	private static void enqueue(int n) {
-		S1.push(n);
-//		System.out.println("pushed into S1");
+		if(S2.empty()){
+			// put in S1
+			if(S1.empty())
+				front = n;
+			S1.push(n);
+		}else{
+			// copy from S2 to S1 and then push
+			while(!S2.empty()){
+				int pop = S2.pop();
+				if(S1.empty())
+					front = pop;
+				S1.push(pop);
+			}
+			S1.push(n);
+		}
 	}
 
 	private static void dequeue() {
-		if(!S1.empty()){
-			Stack<Integer> S2 = new Stack<Integer>();
+		if(!S2.empty()){
+			// pop S2
+			S2.pop();
+			if(!S2.empty())
+				front = S2.peek();
+		}else {
 			while(!S1.empty()){
 				S2.push(S1.pop());
-//				System.out.println("copying into S2");
 			}
-//			System.out.println("pop.. "+S2.pop());
 			S2.pop();
-			while(!S2.empty()){
-				S1.push(S2.pop());
-//				System.out.println("copying back into S1");
-			}
-//			System.out.println("done... S1->"+S1.size()+"  S2->"+S2.size());
+			if(!S2.empty())
+				front = S2.peek();
 		}
 	}
 
-	private static void print() {
-		if(!S1.empty()){
-			Stack<Integer> S2 = new Stack<Integer>();
-			while(!S1.empty()){
-				S2.push(S1.pop());
-//				System.out.println("copying into S2");
-			}
-			System.out.println("peeking.. "+S2.peek());
-			while(!S2.empty()){
-				S1.push(S2.pop());
-//				System.out.println("copying back into S1");
-			}
-//			System.out.println("done... S1->"+S1.size()+"  S2->"+S2.size());
-		}
-	}
+//	private static void print() {
+//		if(!S1.empty()){
+//			Stack<Integer> S2 = new Stack<Integer>();
+//			while(!S1.empty()){
+//				S2.push(S1.pop());
+////				System.out.println("copying into S2");
+//			}
+//			System.out.println("peeking.. "+S2.peek());
+//			while(!S2.empty()){
+//				S1.push(S2.pop());
+////				System.out.println("copying back into S1");
+//			}
+////			System.out.println("done... S1->"+S1.size()+"  S2->"+S2.size());
+//		}
+//	}
 
 }
