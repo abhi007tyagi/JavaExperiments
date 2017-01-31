@@ -20,13 +20,13 @@ public class Anagrams {
 	 */
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-
 		int T = in.nextInt();
 		for (int i = 0; i < T; i++) {
 			String s = in.next();
 			int mid = s.length() / 2;
 			System.out.println("Anagram : " + getDiff(s.substring(0, mid), s.substring(mid)));
 		}
+		in.close();
 	}
 
 	private static boolean isAnagram(String s1, String s2) {
@@ -52,9 +52,6 @@ public class Anagrams {
 	}
 
 	private static int getDiff(String s1, String s2) {
-		System.out.println("S1->" + s1);
-		System.out.println("S2->" + s2);
-
 		if (s1.length() == s2.length()) {
 			int diff = 0;
 			for (int i = 0; i < s1.length(); i++) {
@@ -77,12 +74,4 @@ public class Anagrams {
 			return -1;
 		}
 	}
-
-	private static void print(char[] ch) {
-		for (int i = 0; i < ch.length; i++) {
-			System.out.print(ch[i]);
-		}
-		System.out.println();
-	}
-
 }

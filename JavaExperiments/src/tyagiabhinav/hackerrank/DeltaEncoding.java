@@ -21,6 +21,7 @@ public class DeltaEncoding {
 		for(int i=0; i<8; i++){
 			list.add(in.nextInt());
 		}
+		in.close();
 		System.out.print(list.get(0));
 		for(int i=1; i<list.size(); i++){
 			
