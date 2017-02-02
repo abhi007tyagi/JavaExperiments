@@ -23,9 +23,12 @@ public class PascalTriangle {
 
 	private static int binomialCoeff(int n, int k) {
 		/*
-		 * 
-		 * (n) n! (-) = --------- (k) k!(n-k)!
-		 * 
+		 
+		   (n)         n!           
+		  (---) =  ----------               
+		   (k)      k!(n-k)!
+		  
+		  
 		 */
 		int neu = factorial(n);
 		int deno = factorial(k);
