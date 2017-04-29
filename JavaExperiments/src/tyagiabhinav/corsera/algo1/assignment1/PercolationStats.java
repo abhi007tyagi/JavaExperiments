@@ -18,6 +18,8 @@ public class PercolationStats {
 
 	private double[] thresholds;
 	private Percolation percolation;
+	private static double highConf;
+	private static double lowConf;
 
 	public PercolationStats(int N, int T) {
 		if (N <= 0 || T <= 0){
@@ -40,12 +42,19 @@ public class PercolationStats {
 		}
 	}
 
-	public double stdDev() {
+	public double stddev() {
 		return StdStats.stddev(thresholds);
 	}
 	
 	public double mean() {
 		return StdStats.mean(thresholds);
+	}
+	
+	public double confidenceHi(){
+		return highConf;
+	}
+	public double confidenceLo(){
+		return lowConf;
 	}
 
 	public static void main(String[] args) {
@@ -58,9 +67,9 @@ public class PercolationStats {
 		PercolationStats pStat = new PercolationStats(N, T);
 
 		double mean = pStat.mean();
-		double stddev = pStat.stdDev();
-		double lowConf = mean - (1.96 * stddev / Math.sqrt(T));
-		double highConf = mean + (1.96 * stddev / Math.sqrt(T));
+		double stddev = pStat.stddev();
+		lowConf = mean - (1.96 * stddev / Math.sqrt(T));
+		highConf = mean + (1.96 * stddev / Math.sqrt(T));
 
 		out.printf("mean \t = %f\n", mean);
 		out.printf("stddev \t = %f\n", stddev);

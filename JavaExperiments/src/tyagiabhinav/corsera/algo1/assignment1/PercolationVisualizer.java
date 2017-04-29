@@ -20,6 +20,7 @@ package tyagiabhinav.corsera.algo1.assignment1;
  ******************************************************************************/
 
 import java.awt.Font;
+import java.io.File;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
