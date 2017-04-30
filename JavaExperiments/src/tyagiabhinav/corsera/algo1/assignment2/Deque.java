@@ -1,12 +1,11 @@
+package tyagiabhinav.corsera.algo1.assignment2;
+
 /**
  * 
  */
-package tyagiabhinav.corsera.algo1.assignment2;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
-import edu.princeton.cs.algs4.Queue;
 
 /**
  * @author abhinavtyagi
@@ -111,7 +110,9 @@ public class Deque<Item> implements Iterable<Item> {
 			throw new NoSuchElementException("Queue underflow");
 		Item item = first.item;
 		first = first.next;
-		first.prev = null;
+		if (first != null) {
+			first.prev = null;
+		}
 		N--;
 		if (isEmpty())
 			last = null; // to avoid loitering
@@ -130,7 +131,9 @@ public class Deque<Item> implements Iterable<Item> {
 			throw new NoSuchElementException("Queue underflow");
 		Item item = last.item;
 		last = last.prev;
-		last.next = null;
+		if (last != null) {
+			last.next = null;
+		}
 		N--;
 		if (isEmpty())
 			first = null; // to avoid loitering
@@ -138,62 +141,77 @@ public class Deque<Item> implements Iterable<Item> {
 	}
 
 	/**
-     * Returns an iterator that iterates over the items in this queue in FIFO order.
-     *
-     * @return an iterator that iterates over the items in this queue in FIFO order
-     */
-    public Iterator<Item> iterator()  {
-        return new ListIterator<Item>(first);  
-    }
-    
- // an iterator, doesn't implement remove() since it's optional
-    private class ListIterator<Item> implements Iterator<Item> {
-        private Node<Item> current;
+	 * Returns an iterator that iterates over the items in this queue in FIFO
+	 * order.
+	 *
+	 * @return an iterator that iterates over the items in this queue in FIFO
+	 *         order
+	 */
+	public Iterator<Item> iterator() {
+		return new ListIterator<Item>(first);
+	}
 
-        public ListIterator(Node<Item> first) {
-            current = first;
-        }
+	// an iterator, doesn't implement remove() since it's optional
+	private class ListIterator<Item> implements Iterator<Item> {
+		private Node<Item> current;
 
-        public boolean hasNext()  { return current != null;                     }
-        public void remove()      { throw new UnsupportedOperationException();  }
+		public ListIterator(Node<Item> first) {
+			current = first;
+		}
 
-        public Item next() {
-            if (!hasNext()) throw new NoSuchElementException();
-            Item item = current.item;
-            current = current.next; 
-            return item;
-        }
-    }
+		public boolean hasNext() {
+			return current != null;
+		}
+
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+
+		public Item next() {
+			if (!hasNext())
+				throw new NoSuchElementException();
+			Item item = current.item;
+			current = current.next;
+			return item;
+		}
+	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Deque<Integer> dq = new Deque<Integer>();
-		dq.addFirst(1);
-		printList(dq);
-		dq.addFirst(2);
-		printList(dq);
-		dq.addFirst(3);
-		printList(dq);
-		dq.addLast(0);
-		printList(dq);
-		dq.removeFirst();
-		printList(dq);
-		dq.removeLast();
-		printList(dq);
-		dq.addLast(8);
-		printList(dq);
-		dq.addFirst(9);
-		printList(dq);
-		
+		Deque<Integer> deque = new Deque<Integer>();
+		deque.addLast(0);
+        deque.removeLast();
+        printList(deque);
+//		dq.isEmpty();
+//		dq.addFirst(1);
+//		printList(dq);
+//		dq.removeLast();
+//		dq.addFirst(1);
+//		printList(dq);
+//		dq.addFirst(2);
+//		printList(dq);
+//		dq.addFirst(3);
+//		printList(dq);
+//		dq.addLast(0);
+//		printList(dq);
+//		dq.removeFirst();
+//		printList(dq);
+//		dq.removeLast();
+//		printList(dq);
+//		dq.addLast(8);
+//		printList(dq);
+//		dq.addFirst(9);
+//		printList(dq);
+
 	}
-	
-	private static void printList(Deque<Integer> dq){
-		for(int i : dq){
+
+	private static void printList(Deque<Integer> dq) {
+		for (int i : dq) {
 			System.out.print(i);
 		}
-		System.out.println("  | Size->"+dq.size());
+		System.out.println("  | Size->" + dq.size());
 	}
 
 }

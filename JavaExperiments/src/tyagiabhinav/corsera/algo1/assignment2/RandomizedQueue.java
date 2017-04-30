@@ -1,7 +1,8 @@
+package tyagiabhinav.corsera.algo1.assignment2;
+
 /**
  * 
  */
-package tyagiabhinav.corsera.algo1.assignment2;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -83,11 +84,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		// nextInt is normally exclusive of the top value,
 		// so add 1 to make it inclusive
 		int randPos = rand.nextInt(N);
-//		System.out.println("Rand->"+randPos);
+		// System.out.println("Rand->"+randPos);
 		int i = 0;
 		Node<Item> returnNode = null;
 		Node<Item> prevNode = null;
-		ListIterator listIterator = (ListIterator) this.iterator();
+		ListIterator<Item> listIterator = (ListIterator<Item>) this.iterator();
 		while (listIterator.hasNext()) {
 			if (i == randPos) {
 				returnNode = listIterator.getCurrentNode();
@@ -97,26 +98,30 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 				i++;
 			}
 		}
-		Item returnItem = returnNode.item;
-//		try {
-//			System.out.println("Prev-->" + prevNode.item);
-//			System.out.println("Current-->" + returnNode.item);
-//			System.out.println("ReturnKaNext-->" + returnNode.next.item);
-//		} catch (Exception e) {
-//
-//		}
-		if(returnNode == first){
-			first = returnNode.next;
-		}else if (prevNode != null) {
-			prevNode.next = returnNode.next;
-			if(returnNode == last){
-				last = prevNode;
+		if (returnNode != null) {
+			Item returnItem = returnNode.item;
+			// try {
+			// System.out.println("Prev-->" + prevNode.item);
+			// System.out.println("Current-->" + returnNode.item);
+			// System.out.println("ReturnKaNext-->" + returnNode.next.item);
+			// } catch (Exception e) {
+			//
+			// }
+			if (returnNode == first) {
+				first = returnNode.next;
+			} else if (prevNode != null) {
+				prevNode.next = returnNode.next;
+				if (returnNode == last) {
+					last = prevNode;
+				}
 			}
-		} 
-		N--;
-		if (isEmpty())
-			last = null; // to avoid loitering
-		return returnItem;
+			N--;
+			if (isEmpty())
+				last = null; // to avoid loitering
+			return returnItem;
+		}else{
+			throw new NoSuchElementException("Queue underflow");
+		}
 	}
 
 	/**
@@ -133,14 +138,14 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		// nextInt is normally exclusive of the top value,
 		// so add 1 to make it inclusive
 		int randPos = rand.nextInt(N);
-//		System.out.println("Rand->"+randPos);
+		// System.out.println("Rand->"+randPos);
 		int i = 0;
 		Item returnItem = null;
 		for (Item item : this) {
 			if (i == randPos) {
 				returnItem = item;
 				break;
-			}else{
+			} else {
 				i++;
 			}
 		}
@@ -197,35 +202,35 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	public static void main(String[] args) {
 		RandomizedQueue<Integer> rq = new RandomizedQueue<Integer>();
 		rq.enqueue(1);
-//		printList(rq);
+		// printList(rq);
 		rq.enqueue(2);
-//		printList(rq);
+		// printList(rq);
 		rq.enqueue(3);
-//		printList(rq);
+		// printList(rq);
 		rq.enqueue(4);
-//		printList(rq);
+		// printList(rq);
 		rq.enqueue(5);
-//		printList(rq);
+		// printList(rq);
 		rq.enqueue(6);
-//		printList(rq);
+		// printList(rq);
 		rq.enqueue(7);
-//		printList(rq);
+		// printList(rq);
 		System.out.println("Sample--> " + rq.sample());
-//		printList(rq);
+		// printList(rq);
 		System.out.println("Sample--> " + rq.sample());
-//		printList(rq);
+		// printList(rq);
 		System.out.println("Deque--> " + rq.dequeue());
-//		printList(rq);
+		// printList(rq);
 		System.out.println("Deque--> " + rq.dequeue());
-//		printList(rq);
+		// printList(rq);
 
 	}
 
-//	private static void printList(RandomizedQueue<Integer> dq) {
-//		for (int i : dq) {
-//			System.out.print(i);
-//		}
-//		System.out.println("  | Size->" + dq.size());
-//	}
+	// private static void printList(RandomizedQueue<Integer> dq) {
+	// for (int i : dq) {
+	// System.out.print(i);
+	// }
+	// System.out.println(" | Size->" + dq.size());
+	// }
 
 }

@@ -1,8 +1,8 @@
+package tyagiabhinav.corsera.algo1.assignment2;
+
 /**
  * 
  */
-package tyagiabhinav.corsera.algo1.assignment2;
-
 import edu.princeton.cs.algs4.StdIn;
 
 /**
