@@ -16,8 +16,8 @@ public class FindPairToSum {
 	 */
 	public static void main(String[] args) {
 		PairFinder pairFinder = new PairFinder();
-		int arr[] = { 5, 1, 8, 3, 2, 9, 0, 6, 7, 4 };
-		pairFinder.findPair(arr, 17);
+		int arr[] = { 5, 1, 8, 3, 2, 9, 10, 6, 7, 4 };
+		pairFinder.findPair(arr, 7);
 	}
 }
 
@@ -33,9 +33,11 @@ class PairFinder {
 		while (leftIndex < rightIndex) {
 			if (arr[leftIndex] + arr[rightIndex] == sum) {
 				System.out.println(arr[leftIndex] + " - " + arr[rightIndex]);
-				break;
+				leftIndex++; // for printing all pairs
+				rightIndex--; // for printing all pairs
+//				break; //to print one uncomment break and comment above 2 lines
 			} else if (arr[leftIndex] + arr[rightIndex] > sum) {
-				rightIndex++;
+				rightIndex--;
 			} else if (arr[leftIndex] + arr[rightIndex] < sum) {
 				leftIndex++;
 			}
