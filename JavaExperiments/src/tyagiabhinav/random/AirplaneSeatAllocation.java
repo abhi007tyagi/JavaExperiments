@@ -15,22 +15,22 @@ public class AirplaneSeatAllocation {
 			//for A,B,C
 			if(!S.contains(String.valueOf(i)+'A') && !S.contains(String.valueOf(i)+'B') && !S.contains(String.valueOf(i)+'C')){
 				allottedSeats++;
-				System.out.println(i+"in ABC");
+				System.out.println(i+" in ABC");
 			}
 			//for D,E,F
 			if(!S.contains(String.valueOf(i)+'D') && !S.contains(String.valueOf(i)+'E') && !S.contains(String.valueOf(i)+'F')){
 				allottedSeats++;
-				System.out.println(i+"in DEF");
+				System.out.println(i+" in DEF");
 			}else //for E,F,G
 			if(!S.contains(String.valueOf(i)+'E') && !S.contains(String.valueOf(i)+'F') && !S.contains(String.valueOf(i)+'G')){
 				allottedSeats++;
-				System.out.println(i+"in EFG");
+				System.out.println(i+" in EFG");
 			}
 			
 			//for H,J,K
 			if(!S.contains(String.valueOf(i)+'H') && !S.contains(String.valueOf(i)+'J') && !S.contains(String.valueOf(i)+'K')){
 				allottedSeats++;
-				System.out.println(i+"in HJK");
+				System.out.println(i+" in HJK");
 			}
 			
 		}

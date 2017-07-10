@@ -14,7 +14,7 @@ public class PerfectSquareInRange {
 	 */
 	public static void main(String[] args) {
 		PerfectSquare perfectSquare = new PerfectSquare();
-		System.out.println(perfectSquare.getPerfectSquareCount(2, 20));
+		System.out.println(perfectSquare.getPerfectSquareCount(-100, -1));
 	}
 }
 
@@ -22,7 +22,8 @@ class PerfectSquare {
 	
 	public int getPerfectSquareCount(int a, int b){
 		int count = 0;
-		count = tricWay(a, b);//bruteForceWay(a, b);
+		count = bruteForceWay(a, b);
+//		count = tricWay(a, b);
 		return count;
 	}
 	
