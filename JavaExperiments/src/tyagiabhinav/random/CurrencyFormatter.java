@@ -23,10 +23,10 @@ public class CurrencyFormatter {
         double payment = scanner.nextDouble();
         scanner.close();
         
-        String FORMAT = "##,###.##";
+        String FORMAT = "###,###.##";
         
         DecimalFormat us = new DecimalFormat(FORMAT);
-        us.setPositivePrefix(NumberFormat.getCurrencyInstance(Locale.US).getCurrency().getSymbol());
+        us.setPositivePrefix("$");
         System.out.println("US: " + us.format(payment));
         
         DecimalFormat in = new DecimalFormat(FORMAT);
@@ -34,15 +34,32 @@ public class CurrencyFormatter {
         System.out.println("India: " + in.format(payment));
         
         DecimalFormat cn = new DecimalFormat(FORMAT);
-        cn.setPositivePrefix(NumberFormat.getCurrencyInstance(Locale.CHINESE).getCurrency().getSymbol());
+        cn.setPositivePrefix("￥");
         System.out.println("China: " + cn.format(payment));
         
         DecimalFormatSymbols unusualSymbols = new DecimalFormatSymbols();
         unusualSymbols.setDecimalSeparator(',');
         unusualSymbols.setGroupingSeparator(' ');
         DecimalFormat fr = new DecimalFormat(FORMAT, unusualSymbols);
-        fr.setPositiveSuffix(NumberFormat.getCurrencyInstance(Locale.FRENCH).getCurrency().getSymbol());
+        fr.setPositiveSuffix(" €");
         System.out.println("France: " + fr.format(payment));
+        
+
+        /* Create custom Locale for India. 
+          I used the "IANA Language Subtag Registry" to find India's country code */
+        Locale indiaLocale = new Locale("en", "IN");
+
+        /* Create NumberFormats using Locales */
+        NumberFormat usa     = NumberFormat.getCurrencyInstance(Locale.US);
+        NumberFormat india  = NumberFormat.getCurrencyInstance(indiaLocale);
+        NumberFormat china  = NumberFormat.getCurrencyInstance(Locale.CHINA);
+        NumberFormat france = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+
+        /* Print output */        
+        System.out.println("US: "     + usa.format(payment));
+        System.out.println("India: "  + india.format(payment));
+        System.out.println("China: "  + china.format(payment));
+        System.out.println("France: " + france.format(payment));
 		
 	}
 
