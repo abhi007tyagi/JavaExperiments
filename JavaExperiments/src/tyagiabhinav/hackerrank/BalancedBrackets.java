@@ -16,7 +16,7 @@ public class BalancedBrackets {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
 		int t = in.nextInt();
 		for (int a0 = 0; a0 < t; a0++) {
 			String s = in.next();
@@ -53,7 +53,7 @@ public class BalancedBrackets {
 					break;
 				}
 			}
-			if (isBalanced && stack.isEmpty()) {
+			if (isBalanced  && stack.isEmpty()) {
 				System.out.println("YES");
 			} else {
 				System.out.println("NO");
@@ -82,5 +82,4 @@ public class BalancedBrackets {
 			return false;
 		}
 	}
-
 }
