@@ -43,13 +43,13 @@ public class RepeatedString {
 	}
 	
 	private static long countOfAinString(String s) {
-		int numOfAinS = 0;
-		int sizeOfS = s.length();
-		for(int i=0; i<sizeOfS; i++) {
-			if(s.charAt(i) == 'a') {
-				numOfAinS++;
-			}
-		}
+		long numOfAinS = s.chars().filter(ch -> ch == 'a').count();
+//		int sizeOfS = s.length();
+//		for(int i=0; i<sizeOfS; i++) {
+//			if(s.charAt(i) == 'a') {
+//				numOfAinS++;
+//			}
+//		}
 		return numOfAinS;
 	}
 
