@@ -25,7 +25,6 @@ public class RepeatedString {
 		System.out.println("Count: "+result);
 
 		scanner.close();
-
 	}
 
 	private static long repeatedString(String s, long n) {
