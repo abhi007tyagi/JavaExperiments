@@ -10,34 +10,25 @@ public class Polygons {
 		int sqCount = 0;
 		int rectCount = 0;
 		int otherCount = 0;
-		ArrayList<Integer> list = new ArrayList<>();
-		while(true){
-			int q = in.nextInt();
-			System.out.println(q);
-			list.add(q);
-			if(!in.hasNextInt()){
-				in.close();
-				break;
-			}
-			System.out.println(in.hasNextInt());
-		}
-		System.out.println("OUT>>>>>>>");
-		int index = 0;
-		int rIndex = 0;
-		while(!list.isEmpty()){
-			int a = list.get(index++);
-			int b = list.get(index++);
-			int c = list.get(index++);
-			int d = list.get(index++);
-			index = 0;
+		ArrayList<String> list = new ArrayList<>();
+		String row = null;
+		while (!(row = in.nextLine()).isEmpty()) {
+//			list.add(row);
+//		}
+//
+//		for (String line : list) {
+//			System.out.println(line);
 			
-			list.remove(rIndex++);
-			list.remove(rIndex++);
-			list.remove(rIndex++);
-			list.remove(rIndex++);
-			rIndex = 0;
-	
-			if(a>0 && b>0 && c>0 && d>0){
+			
+
+			String[] lengths = row.split(" ");
+			int a = Integer.parseInt(lengths[0]);
+			int b = Integer.parseInt(lengths[1]);
+			int c = Integer.parseInt(lengths[2]);
+			int d = Integer.parseInt(lengths[3]);
+
+//			System.out.println(a + " " + b + " " + c + " " + d);
+			if (a > 0 && b > 0 && c > 0 && d > 0) {
 				if (a == b && b == c && c == d && d == a) {
 					double sqAB = Math.sqrt(a * a + b * b);
 					double sqCD = Math.sqrt(c * c + d * d);
@@ -51,11 +42,8 @@ public class Polygons {
 				} else {
 					otherCount++;
 				}
-			}else{
+			} else {
 				otherCount++;
-			}
-			if(!in.hasNextInt()){
-				break;
 			}
 		}
 
