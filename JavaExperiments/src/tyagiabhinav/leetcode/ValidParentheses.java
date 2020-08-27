@@ -8,11 +8,8 @@ public class ValidParentheses {
 
     private static Map<Character,Character> getOpp = new HashMap<>(6);
     static{
-        getOpp.put('(',')');
         getOpp.put(')','(');
-        getOpp.put('{','}');
         getOpp.put('}','{');
-        getOpp.put('[',']');
         getOpp.put(']','[');
     }
     public static boolean isValid(String s) {
