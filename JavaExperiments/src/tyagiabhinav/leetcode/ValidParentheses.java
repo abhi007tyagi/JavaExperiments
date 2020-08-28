@@ -31,5 +31,6 @@ public class ValidParentheses {
         System.out.println(isValid("({[]})"));
         System.out.println(isValid("(({]])"));
         System.out.println(isValid("(]"));
+        System.out.println(isValid(")("));
     }
 }
