@@ -14,7 +14,7 @@ public class RemoveInvalidParentheses {
     public static boolean isValid(String s) {
         int size = s.length();
         if (size == 0) return true;
-        if (size % 2 != 0) return false;
+//        if (size % 2 != 0) return false;
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < size; i++) {
             char ch = s.charAt(i);
@@ -29,7 +29,7 @@ public class RemoveInvalidParentheses {
 
     public static List<String> removeInvalidParentheses(String s) {
         int size = s.length();
-        if (size <= 1) return new ArrayList<>();
+        if (size <= 1) return Arrays.asList("");
         Set<String> set = new HashSet<>();
         for (int i = 1; i < size; i++) {
             char ch = s.charAt(i);
@@ -44,11 +44,13 @@ public class RemoveInvalidParentheses {
         for (String st : set) {
             list.add(st);
         }
+        if(list.isEmpty()) list.add("");
         return list;
     }
 
     public static void main(String[] args) {
-        String str = "(a)())()";
+//        String str = "(a)())()";
+        String str = ")(";
         System.out.println(removeInvalidParentheses(str));
     }
 }
