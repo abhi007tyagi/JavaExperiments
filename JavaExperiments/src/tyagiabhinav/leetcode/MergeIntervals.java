@@ -1,44 +1,42 @@
 package tyagiabhinav.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MergeIntervals {
 
     public static int[][] merge(int[][] intervals) {
         int size = intervals.length;
         if (size < 2) return intervals;
+        Collections.sort(Arrays.asList(intervals), new Comparator<int[]>() {
+            @Override
+            public int compare(int[] a, int[] b) {
+                return (a[0] < b[0]) ? -1 : (a[0] == b[0]) ? 0 : 1;
+            }
+        });
 
-        Set<Integer> scanned = new HashSet<>();
         List<int[]> list = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            if (!scanned.contains(i)) {
-                for (int j = i+1; j < size; j++) {
-                    if (!scanned.contains(j)) {
-                        if (intervals[i][1] >= intervals[j][0]) {
-                            intervals[i] = new int[]{Math.min(intervals[i][0], intervals[j][0]), Math.max(intervals[i][1], intervals[j][1])};
-                            scanned.add(i);
-                            scanned.add(j);
-                        }
-                    }
-                }
-                list.add(intervals[i]);
+        int j=1;
+        int[] temp = intervals[0];
+        while(j<size){
+            int x = Math.max(temp[0], intervals[j][0]);
+            int y = Math.min(temp[1], intervals[j][1]);
+            if(x<=y){
+                temp = new int[]{Math.min(temp[0], intervals[j][0]), Math.max(temp[1], intervals[j][1])};
+                j++;
+            } else {
+                list.add(temp);
+                temp = intervals[j++];
             }
         }
-        int[][] res = new int[list.size()][];
-        for (int i = 0; i < list.size(); i++) {
-            res[i] = list.get(i);
-        }
-        return res;
+        list.add(temp);
+        return list.toArray(new int[list.size()][]);
     }
 
     public static void main(String[] args) {
-        int[][] arr = {{1, 2}, {3, 6}, {2, 10}, {15, 18}};
+        int[][] arr = {{1, 4}, {4, 5}};
         arr = merge(arr);
-        for (int[] l : arr) {
-            System.out.println(l[0] + " " + l[1]);
+        for (int[] n : arr) {
+            System.out.print("[" + n[0] + " " + n[1] + "]");
         }
     }
 }
