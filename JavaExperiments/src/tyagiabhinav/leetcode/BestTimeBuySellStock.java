@@ -7,10 +7,9 @@ public class BestTimeBuySellStock {
         if (size < 2) return 0;
 
         int max = 0, buy = -prices[0];
-        for (int i=0; i < size; i++) {
-            int profit = buy + prices[i];
-            if (profit > max) {
-                max = profit;
+        for (int i=1; i < size; i++) {
+            if (buy + prices[i] > max) {
+                max = buy + prices[i];
             } else {
                 buy = -(Math.min(-buy, prices[i]));
             }
