@@ -1,7 +1,6 @@
 package tyagiabhinav.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class SpiralMatrix {
 
@@ -102,7 +101,16 @@ public class SpiralMatrix {
         int[][] matrix = {
                 {1}
         };
-        List<Integer> list = spiralOrder(matrix);
-        System.out.println(list.toString());
+//        List<Integer> list = spiralOrder(matrix);
+//        System.out.println(list.toString());
+
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(10,10);
+        map.put(20,20);
+        map.put(30,30);
+
+        Object[] arr = map.keySet().toArray();
+        System.out.println(map.get(arr[2]));
+
     }
 }
