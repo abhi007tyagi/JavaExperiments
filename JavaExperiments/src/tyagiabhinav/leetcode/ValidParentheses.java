@@ -1,8 +1,6 @@
 package tyagiabhinav.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 public class ValidParentheses {
 
@@ -12,6 +10,27 @@ public class ValidParentheses {
         getOpp.put('}','{');
         getOpp.put(']','[');
     }
+
+//    public static boolean isValid(String s) {
+//        int size = s.length();
+//        if(size == 0) return true;
+//        if(size%2 != 0) return false;
+//        Stack<Character> stack = new Stack<>();
+//        for(int i=0; i<size; i++){
+//            switch(s.charAt(i)){
+//                case ')': if(stack.isEmpty() || stack.pop() != '(') return false;
+//                    break;
+//                case ']': if(stack.isEmpty() || stack.pop() != '[') return false;
+//                    break;
+//                case '}': if(stack.isEmpty() || stack.pop() != '{') return false;
+//                    break;
+//                default: stack.push(s.charAt(i));
+//                    break;
+//            }
+//        }
+//        return stack.isEmpty();
+//    }
+
     public static boolean isValid(String s) {
         int size = s.length();
         if(size == 0) return true;
@@ -27,10 +46,23 @@ public class ValidParentheses {
     }
 
     public static void main(String[] args) {
-        System.out.println(isValid("()[]{}"));
-        System.out.println(isValid("({[]})"));
-        System.out.println(isValid("(({]])"));
-        System.out.println(isValid("(]"));
-        System.out.println(isValid(")("));
+//        System.out.println(isValid("()[]{}"));
+//        System.out.println(isValid("({[]})"));
+//        System.out.println(isValid("(({]])"));
+//        System.out.println(isValid("(]"));
+//        System.out.println(isValid(")("));
+
+        Stack<Integer> stack = new Stack<>();
+        stack.push(3);
+        stack.push(4);
+        stack.push(1);
+        stack.push(2);
+        stack.push(8);
+
+        List<Integer> list = new ArrayList<>();
+
+        stack.remove(1);
+        stack.get(8);
+        System.out.println(stack.toString());
     }
 }
