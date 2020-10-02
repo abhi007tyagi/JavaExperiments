@@ -9,12 +9,7 @@ public class TopKFrequentElements {
             map.put(n, map.getOrDefault(n, 0)+1);
         }
 
-        PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>(){
-            @Override
-            public int compare(Integer k1, Integer k2) {
-                return map.get(k1) - map.get(k2);
-            }
-        });
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.comparingInt(map::get));
 
         for(int key: map.keySet()){
             pq.add(key);

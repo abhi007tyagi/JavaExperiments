@@ -1,6 +1,6 @@
 package tyagiabhinav.leetcode;
 
-import java.util.Stack;
+import java.util.*;
 
 public class AddTwoNumbers {
     public static class ListNode {
@@ -18,6 +18,50 @@ public class AddTwoNumbers {
             this.val = val;
             this.next = next;
         }
+    }
+
+    private static ListNode getMid(ListNode head){
+        ListNode slow = head, fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow.next;
+    }
+
+    private static ListNode getReverse(ListNode head){
+        if(head == null) return null;
+        ListNode tail = null;
+        while(head.next != null){
+            ListNode temp = head.next;
+            head.next = tail;
+            tail = head;
+            head = temp;
+        }
+        head.next = tail;
+        return head;
+    }
+
+    private static ListNode sort(ListNode head){
+        if(head == null) return head;
+        List<ListNode> list = new ArrayList<>();
+        while(head != null){
+            list.add(head);
+            head = head.next;
+        }
+        Collections.sort(list, (n1,n2) -> {
+            return n2.val - n1.val;
+        });
+        ListNode node = null;
+        ListNode prev = null;
+        for(int i=0; i<list.size(); i++){
+            node = new ListNode(list.get(i).val);
+            node.next = prev;
+            prev = node;
+        }
+
+        return node;
     }
 
 
@@ -62,7 +106,15 @@ public class AddTwoNumbers {
         l2 = new ListNode(9, l2);
         l2 = new ListNode(1, l2);
 
-        ListNode l3 = addTwoNumbers(l1, l2);
+//        ListNode l3 = addTwoNumbers(l1, l2);
+
+
+        ListNode l = new ListNode(5);
+        l = new ListNode(4, l);
+        l = new ListNode(3, l);
+        l = new ListNode(2, l);
+        l = new ListNode(1, l);
+        ListNode l3 = getReverse(l);
 
         while(l3 != null){
             System.out.println(l3.val);
