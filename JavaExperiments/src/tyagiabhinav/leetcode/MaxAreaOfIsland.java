@@ -1,5 +1,13 @@
 package tyagiabhinav.leetcode;
 
+
+import javafx.util.Pair;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
 public class MaxAreaOfIsland {
     public int maxAreaOfIsland(int[][] grid) {
         int r = grid.length-1;
@@ -24,6 +32,25 @@ public class MaxAreaOfIsland {
         count = dfs(M,i+1,j,r,c,count); // bottom
         count = dfs(M,i,j-1,r,c,count); // left
         count = dfs(M,i,j+1,r,c,count); // right
+
         return count;
     }
+
+    private static int getDiff(String a, String b){
+        int count = 0;
+        for(int i=0; i<a.length(); i++){
+            if(b.indexOf(a.charAt(i)) == -1) count++;
+            if(count > 1) return count;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        String A = "abcdefgh";
+        String B = "izcdefgh";
+
+        System.out.println(getDiff(A, B));
+    }
+
+
 }
