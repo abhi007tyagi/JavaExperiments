@@ -1,5 +1,7 @@
 package tyagiabhinav.leetcode;
 
+import java.util.LinkedHashMap;
+
 public class MedianOfTwoSortedArray {
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -25,6 +27,14 @@ public class MedianOfTwoSortedArray {
         int[] arr1 = {1,200,201,300,457}; //231.8
         int[] arr2 = {2,39,67,69,79,87,101}; // 63.4
         System.out.println(findMedianSortedArrays(arr1, arr2));
+    }
+
+
+    class LRUCache extends LinkedHashMap<Integer, Integer>{
+
+        public LRUCache(int initialCapacity, float loadFactor, boolean accessOrder) {
+            super(initialCapacity, loadFactor, accessOrder);
+        }
     }
 
 }
