@@ -107,8 +107,8 @@ public class BST {
     }
 
     private void verticalTraversalDFS(TreeNode root, int x, int y){
-        Map<Integer, Set<Integer>> yMap = xMap.getOrDefault(x, new TreeMap<Integer, Set<Integer>>());
-        Set<Integer> set = yMap.getOrDefault(y, new TreeSet<Integer>());
+        Map<Integer, Set<Integer>> yMap = xMap.getOrDefault(x, new TreeMap<>());
+        Set<Integer> set = yMap.getOrDefault(y, new TreeSet<>());
 
         set.add(root.val);
         yMap.put(y,set);

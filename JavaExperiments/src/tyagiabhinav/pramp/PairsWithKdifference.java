@@ -1,22 +1,21 @@
 package tyagiabhinav.pramp;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 public class PairsWithKdifference {
 
-    private static int[][] findPairsWithGivenDifference(int[] arr, int k) {
-        // your code goes here
+    static int[][] findPairsWithGivenDifference(int[] arr, int k) {
         List<int[]> pairs = new ArrayList<>();
-        Set<Integer> set = new HashSet<>();
+        Map<Integer, Integer> map = new HashMap<>();
         for(int n: arr)
-            set.add(n+k);
+            map.put(n-k, n);
 
         for(int i=0; i<arr.length; i++){
-            if(set.contains(arr[i]))
-                pairs.add(new int[]{arr[i], arr[i]-k});
+            if(map.containsKey(arr[i]))
+                pairs.add(new int[]{map.get(arr[i]), arr[i]});
         }
         return pairs.toArray(new int[pairs.size()][]);
     }
@@ -25,7 +24,7 @@ public class PairsWithKdifference {
         int arr[] = {0, -1, -2, 2, 1};
         int[][] res = findPairsWithGivenDifference(arr, 1);
         for(int[] p: res)
-            System.out.println(p[0]+", "+p[1]);
+            System.out.println(p[0]+","+p[1]);
     }
 
 }

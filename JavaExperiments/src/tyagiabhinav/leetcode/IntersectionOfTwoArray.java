@@ -1,9 +1,6 @@
 package tyagiabhinav.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class IntersectionOfTwoArray {
     public static int[] intersection(int[] nums1, int[] nums2) {
@@ -48,5 +45,8 @@ public class IntersectionOfTwoArray {
 
     public static void main(String[] args) {
         int[] res = intersection(new int[]{1,2,3,4}, new int[]{5,6});
+
+        int arr[] = {1,2,3,1,4,2,1,3};
+        TreeMap<Integer, String> map = new TreeMap<>();
     }
 }
