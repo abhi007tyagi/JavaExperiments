@@ -5,6 +5,25 @@ import java.util.*;
 
 public class WordCountEngine {
 
+    static int[] absSort(int[] arr) {
+        // your code goes here
+        Integer[] AR = new Integer[arr.length];
+        for(int i=0; i<arr.length; i++)
+            AR[i] = arr[i];
+
+        Arrays.sort(AR, (a,b) -> {
+            int x = Math.abs(a);
+            int y = Math.abs(b);
+            if(x == y){
+                return a.compareTo(b);
+            }
+            return x-y;
+        });
+        for(int i=0; i<arr.length; i++)
+            arr[i] = AR[i];
+        return arr;
+    }
+
     // [practice, makes, perfect]
     //
     // treemap -- key word, value occurance
@@ -55,9 +74,14 @@ public class WordCountEngine {
     }
 
     public static void main(String[] args) {
-        String[][] res = wordCountEngine("Practice makes perfect. you'll only get Perfect by practice. just practice!");
-        for(String[] r: res)
-            System.out.println(r[0]+" "+r[1]);
+//        String[][] res = wordCountEngine("Practice makes perfect. you'll only get Perfect by practice. just practice!");
+//        for(String[] r: res)
+//            System.out.println(r[0]+" "+r[1]);
+
+        int[] arr = new int[]{2, -7, -2, -2, 0};
+        arr = absSort(arr);
+        for(int n: arr)
+            System.out.println(n+" ");
     }
 
 
